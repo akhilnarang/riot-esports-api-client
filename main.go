@@ -127,13 +127,19 @@ func main() {
 			winner = " (Winner 🎉)"
 		}
 		fmt.Println("Team: ", team, winner)
-		fmt.Printf("\tSr.No.\tName\tScore\tKills\tDeaths\tAssists\tRounds\tFree Ability\tAbility 1\tAbility 2\tUltimate\n")
+		if team != "Neutral" {
+			fmt.Printf("\t%-6s\t%-20s\t\t%-6s\t%-6s\t%-6s\t%-6s\t%-6s\t%-12s\t%-10s\t%-10s\t%-8s\n", "Sr.No.", "Name", "Score", "Kills", "Deaths", "Assists", "Rounds", "Free Ability", "Ability 1", "Ability 2", "Ultimate")
+		}
 		for idx, player := range players {
 			var obs = ""
 			if player.IsObserver {
 				obs = " (Observer)"
 			}
-			fmt.Printf("\t%d. %s%s\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\n", idx+1, player.GameName, obs, player.Stats.Score, player.Stats.Kills, player.Stats.Deaths, player.Stats.Assists, player.Stats.RoundsPlayed, player.Stats.AbilityCasts.GrenadeCasts, player.Stats.AbilityCasts.Ability1Casts, player.Stats.AbilityCasts.Ability2Casts, player.Stats.AbilityCasts.UltimateCasts)
+			if team != "Neutral" {
+				fmt.Printf("\t%-6d\t%-20s%-10s\t%-6d\t%-6d\t%-6d\t%-6d\t%-6d\t%-12d\t%-10d\t%-10d\t%-8d\n", idx+1, player.GameName, obs, player.Stats.Score, player.Stats.Kills, player.Stats.Deaths, player.Stats.Assists, player.Stats.RoundsPlayed, player.Stats.AbilityCasts.GrenadeCasts, player.Stats.AbilityCasts.Ability1Casts, player.Stats.AbilityCasts.Ability2Casts, player.Stats.AbilityCasts.UltimateCasts)
+			} else {
+				fmt.Printf("\t%-6d\t%-20s%-10s\n", idx+1, player.GameName, obs)
+			}
 		}
 		fmt.Println()
 		fmt.Println()
