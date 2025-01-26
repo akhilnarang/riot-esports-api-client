@@ -9,6 +9,7 @@ type MatchInfoResponse struct {
 	MatchInfo MatchInfo `json:"matchInfo"`
 	Players   []Player  `json:"players"`
 	Teams     []Team    `json:"teams"`
+	Coaches   []Coach   `json:"coaches"`
 }
 
 type MatchInfo struct {
@@ -65,4 +66,15 @@ type Team struct {
 	RoundsPlayed int    `json:"roundsPlayed"`
 	RoundsWon    int    `json:"roundsWon"`
 	NumPoints    int    `json:"numPoints"`
+}
+
+type Coach struct {
+	Puuid  string `json:"puuid"`
+	TeamId string `json:"teamId"`
+}
+
+type AccountResponse struct {
+	Puuid    string `json:"puuid"`
+	GameName string `json:"gameName"`
+	TagLine  string `json:"tagLine"`
 }
